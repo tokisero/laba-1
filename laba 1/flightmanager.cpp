@@ -1,10 +1,12 @@
-#include "Flight.h"
+#include "flight.h"
 #include <iostream>
 
-// Helper function to update flight details
+
 void updateFlightDetails(flight& flight) {
     std::string newdestination;
-    int newday, newmonth, newtime;
+    int newday;
+    int newmonth; 
+    int newtime;
     std::string zero = "0";
 
     std::cout << "¬ведите новый пункт назначени€:(0 дл€ пропуска) ";
@@ -53,6 +55,7 @@ void flightmanager::editflight(int flightnumber) {
 void flightmanager::deleteflight(int flightnumber) {
     auto it = std::find_if(flights.begin(), flights.end(),
         [flightnumber](const flight& f) { return f.getflightnumber() == flightnumber; });
+
     if (it != flights.end()) {
         flights.erase(it);
         std::cout << "–ейс удалЄн!" << std::endl;
@@ -62,7 +65,6 @@ void flightmanager::deleteflight(int flightnumber) {
     }
 }
 
-// Helper function to find flight by number
 void findFlightByNumber(const std::vector<flight>& flights) {
     int flightNumber;
     std::cout << "¬ведите номер\n";
@@ -80,7 +82,6 @@ void findFlightByNumber(const std::vector<flight>& flights) {
     }
 }
 
-// Helper function to find flight by destination
 void findFlightByDestination(const std::vector<flight>& flights) {
     std::string destination;
     std::cout << "¬ведите точку назначени€\n";
@@ -98,7 +99,6 @@ void findFlightByDestination(const std::vector<flight>& flights) {
     }
 }
 
-// Helper function to find flight by date
 void findFlightByDate(const std::vector<flight>& flights) {
     int day, month;
     std::cout << "¬ведите день: ";
