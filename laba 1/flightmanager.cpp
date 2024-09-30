@@ -1,6 +1,6 @@
 #include "flight.h"
 #include <iostream>
-
+#include <ranges>
 
 void updateFlightDetails(flight& flight) {
     std::string newdestination;
@@ -55,7 +55,6 @@ void flightmanager::editflight(int flightnumber) {
 void flightmanager::deleteflight(int flightnumber) {
     auto it = std::find_if(flights.begin(), flights.end(),
         [flightnumber](const flight& f) { return f.getflightnumber() == flightnumber; });
-
     if (it != flights.end()) {
         flights.erase(it);
         std::cout << "–ейс удалЄн!" << std::endl;
@@ -100,7 +99,8 @@ void findFlightByDestination(const std::vector<flight>& flights) {
 }
 
 void findFlightByDate(const std::vector<flight>& flights) {
-    int day, month;
+    int day; 
+    int month;
     std::cout << "¬ведите день: ";
     std::cin >> day;
     std::cout << "¬ведите мес€ц: ";
