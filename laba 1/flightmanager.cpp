@@ -2,10 +2,10 @@
 #include <iostream>
 #include <ranges>
 
-void updateFlightDetails(flight& flight) {
+void updateflightdetails(flight& flight) {
     std::string newdestination;
     int newday;
-    int newmonth; 
+    int newmonth;
     int newtime;
     std::string zero = "0";
 
@@ -45,7 +45,7 @@ void flightmanager::addflight(int flightnumber, const std::string& destination, 
 void flightmanager::editflight(int flightnumber) {
     for (auto& flight : flights) {
         if (flight.getflightnumber() == flightnumber) {
-            updateFlightDetails(flight);
+            updateflightdetails(flight); 
             return;
         }
     }
@@ -64,7 +64,7 @@ void flightmanager::deleteflight(int flightnumber) {
     }
 }
 
-void findFlightByNumber(const std::vector<flight>& flights) {
+void findflightbynumber(const std::vector<flight>& flights) {
     int flightNumber;
     std::cout << "Введите номер\n";
     std::cin >> flightNumber;
@@ -81,7 +81,7 @@ void findFlightByNumber(const std::vector<flight>& flights) {
     }
 }
 
-void findFlightByDestination(const std::vector<flight>& flights) {
+void findflightbydestination(const std::vector<flight>& flights) {
     std::string destination;
     std::cout << "Введите точку назначения\n";
     std::cin >> destination;
@@ -98,8 +98,8 @@ void findFlightByDestination(const std::vector<flight>& flights) {
     }
 }
 
-void findFlightByDate(const std::vector<flight>& flights) {
-    int day; 
+void findflightbydate(const std::vector<flight>& flights) { 
+    int day;
     int month;
     std::cout << "Введите день: ";
     std::cin >> day;
@@ -130,13 +130,13 @@ void flightmanager::findflight() const {
 
         switch (choice) {
         case 1:
-            findFlightByNumber(flights);
+            findflightbynumber(flights); 
             break;
         case 2:
-            findFlightByDestination(flights);
+            findflightbydestination(flights); 
             break;
         case 3:
-            findFlightByDate(flights);
+            findflightbydate(flights); 
             break;
         case 4:
             std::cout << "Выход из программы." << std::endl;

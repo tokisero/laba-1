@@ -13,21 +13,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\cpp">
+      <UniqueIdentifier>{b128b614-3741-48b0-b8dd-88995481466b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\header">
+      <UniqueIdentifier>{80fbde01-8511-40e3-954f-0727f4d05f2f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="flight.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы\cpp</Filter>
     </ClCompile>
     <ClCompile Include="flightmanager.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\cpp</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="flight.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Исходные файлы\header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
