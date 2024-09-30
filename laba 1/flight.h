@@ -34,5 +34,6 @@ public:
 	void deleteflight(int flightnumber);
 	void findflight() const;
 	void listallflights() const;
+
 };
 
