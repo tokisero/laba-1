@@ -1,5 +1,6 @@
 #include <iostream>
 #include <locale>
+#include "flightmanager.h"
 #include "flight.h"
 
 int main() {

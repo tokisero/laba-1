@@ -1,5 +1,7 @@
 #include "flight.h"
+#include "flightmanager.h"
 #include <iostream>
+#include <string_view>
 
 Flight::Flight(int flightNumber, const std::string& destination, int day, int month, int time)
     : flightNumber(flightNumber), destination(destination), day(day), month(month), time(time) {
@@ -25,7 +27,7 @@ int Flight::getTime() const {
     return time;
 }
 
-void Flight::setDestination(const std::string& dest) {
+void Flight::setDestination(std::string_view dest) {
     destination = dest;
 }
 
