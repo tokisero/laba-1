@@ -54,8 +54,9 @@ void FlightManager::editFlight(int flightNumber) {
 }
 
 void FlightManager::deleteFlight(int flightNumber) {
-    auto it = std::find_if(flights.begin(), flights.end(),
-        [flightNumber](const Flight& f) { return f.getFlightNumber() == flightNumber; });
+   /* auto it = std::find_if(flights.begin(), flights.end(),
+        [flightNumber](const Flight& f) { return f.getFlightNumber() == flightNumber; });*/
+    auto it = std::ranges::find_if(flights, [flightNumber](const Flight& f) {return f.getFlightNumber() == flightNumber; });
     if (it != flights.end()) {
         flights.erase(it);
         std::cout << "–ейс удалЄн!" << std::endl;
