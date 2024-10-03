@@ -4,7 +4,7 @@
 
 int main() {
     setlocale(LC_ALL, "RU");
-    flightmanager manager;
+    FlightManager manager;
     int choice = 0;
     do {
         std::cout << "ћеню:\n";
@@ -18,13 +18,13 @@ int main() {
         std::cin >> choice;
         switch (choice) {
         case 1: {
-            int flightnumber;
+            int flightNumber;
             std::string destination;
             int day;
             int month;
             int time;
             std::cout << "¬ведите номер рейса\n";
-            std::cin >> flightnumber;
+            std::cin >> flightNumber;
             std::cout << "¬ведите место назначени€\n";
             std::cin >> destination;
             std::cout << "¬ведите мес€ц\n";
@@ -33,32 +33,32 @@ int main() {
             std::cin >> day;
             std::cout << "¬ведите врем€ вылета\n";
             std::cin >> time;
-            manager.addflight(flightnumber, destination, day, month, time);
+            manager.addFlight(flightNumber, destination, day, month, time);
             break;
         }
         case 2: {
-            int flightnumber;
+            int flightNumber;
             std::cout << "¬ведите номер рейса: ";
-            std::cin >> flightnumber;
-            manager.editflight(flightnumber);
+            std::cin >> flightNumber;
+            manager.editFlight(flightNumber);
             break;
         }
         case 3: {
-            int flightnumber;
+            int flightNumber;
             std::cout << "¬ведите номер рейса: ";
-            std::cin >> flightnumber;
-            manager.deleteflight(flightnumber);
+            std::cin >> flightNumber;
+            manager.deleteFlight(flightNumber);
             break;
         }
         case 4: {
-            manager.findflight();
+            manager.findFlight();
             break;
         }
         case 5: {
-            manager.listallflights();
+            manager.listAllFlights();
             break;
         }
-        case 6:{
+        case 6: {
             std::cout << "¬ыход из программы." << std::endl;
             break;
         }

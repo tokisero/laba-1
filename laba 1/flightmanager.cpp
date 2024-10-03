@@ -2,59 +2,59 @@
 #include <iostream>
 #include <ranges>
 
-void updateflightdetails(flight& flight) {
-    std::string newdestination;
-    int newday;
-    int newmonth;
-    int newtime;
+void updateFlightDetails(Flight& flight) {
+    std::string newDestination;
+    int newDay;
+    int newMonth;
+    int newTime;
     std::string zero = "0";
 
     std::cout << "Введите новый пункт назначения:(0 для пропуска) ";
-    std::cin >> newdestination;
-    if (newdestination != zero) {
-        flight.setdestination(newdestination);
+    std::cin >> newDestination;
+    if (newDestination != zero) {
+        flight.setDestination(newDestination);
     }
 
     std::cout << "Введите новый день отправки:(0 для пропуска) ";
-    std::cin >> newday;
-    if (newday != 0 && newday <= 31) {
-        flight.setday(newday);
+    std::cin >> newDay;
+    if (newDay != 0 && newDay <= 31) {
+        flight.setDay(newDay);
     }
 
     std::cout << "Введите новый месяц отправки: (0 для пропуска) ";
-    std::cin >> newmonth;
-    if (newmonth != 0 && newmonth <= 12) {
-        flight.setmonth(newmonth);
+    std::cin >> newMonth;
+    if (newMonth != 0 && newMonth <= 12) {
+        flight.setMonth(newMonth);
     }
 
     std::cout << "Введите новое время отправки: (0 для пропуска) ";
-    std::cin >> newtime;
-    if (newtime != 0 && newtime <= 24) {
-        flight.settime(newtime);
+    std::cin >> newTime;
+    if (newTime != 0 && newTime <= 24) {
+        flight.setTime(newTime);
     }
 
     std::cout << "Данные о рейсе успешно изменены!" << std::endl;
 }
 
-void flightmanager::addflight(int flightnumber, const std::string& destination, int day, int month, int time) {
-    flight newFlight(flightnumber, destination, day, month, time);
+void FlightManager::addFlight(int flightNumber, const std::string& destination, int day, int month, int time) {
+    Flight newFlight(flightNumber, destination, day, month, time);
     flights.push_back(std::move(newFlight));
     std::cout << "Рейс успешно добавлен!" << std::endl;
 }
 
-void flightmanager::editflight(int flightnumber) {
+void FlightManager::editFlight(int flightNumber) {
     for (auto& flight : flights) {
-        if (flight.getflightnumber() == flightnumber) {
-            updateflightdetails(flight); 
+        if (flight.getFlightNumber() == flightNumber) {
+            updateFlightDetails(flight);
             return;
         }
     }
     std::cout << "Рейс с таким номером не найден!" << std::endl;
 }
 
-void flightmanager::deleteflight(int flightnumber) {
+void FlightManager::deleteFlight(int flightNumber) {
     auto it = std::find_if(flights.begin(), flights.end(),
-        [flightnumber](const flight& f) { return f.getflightnumber() == flightnumber; });
+        [flightNumber](const Flight& f) { return f.getFlightNumber() == flightNumber; });
     if (it != flights.end()) {
         flights.erase(it);
         std::cout << "Рейс удалён!" << std::endl;
@@ -64,15 +64,15 @@ void flightmanager::deleteflight(int flightnumber) {
     }
 }
 
-void findflightbynumber(const std::vector<flight>& flights) {
+void findFlightByNumber(const std::vector<Flight>& flights) {
     int flightNumber;
     std::cout << "Введите номер\n";
     std::cin >> flightNumber;
 
     bool found = false;
     for (const auto& flight : flights) {
-        if (flight.getflightnumber() == flightNumber) {
-            flight.printflight();
+        if (flight.getFlightNumber() == flightNumber) {
+            flight.printFlight();
             found = true;
         }
     }
@@ -81,15 +81,15 @@ void findflightbynumber(const std::vector<flight>& flights) {
     }
 }
 
-void findflightbydestination(const std::vector<flight>& flights) {
+void findFlightByDestination(const std::vector<Flight>& flights) {
     std::string destination;
     std::cout << "Введите точку назначения\n";
     std::cin >> destination;
 
     bool found = false;
     for (const auto& flight : flights) {
-        if (flight.getdestination() == destination) {
-            flight.printflight();
+        if (flight.getDestination() == destination) {
+            flight.printFlight();
             found = true;
         }
     }
@@ -98,7 +98,7 @@ void findflightbydestination(const std::vector<flight>& flights) {
     }
 }
 
-void findflightbydate(const std::vector<flight>& flights) { 
+void findFlightByDate(const std::vector<Flight>& flights) {
     int day;
     int month;
     std::cout << "Введите день: ";
@@ -108,8 +108,8 @@ void findflightbydate(const std::vector<flight>& flights) {
 
     bool found = false;
     for (const auto& flight : flights) {
-        if (flight.getday() == day && flight.getmonth() == month) {
-            flight.printflight();
+        if (flight.getDay() == day && flight.getMonth() == month) {
+            flight.printFlight();
             found = true;
         }
     }
@@ -118,7 +118,7 @@ void findflightbydate(const std::vector<flight>& flights) {
     }
 }
 
-void flightmanager::findflight() const {
+void FlightManager::findFlight() const {
     int choice = 0;
     do {
         std::cout << "1. Найти по номеру\n";
@@ -130,13 +130,13 @@ void flightmanager::findflight() const {
 
         switch (choice) {
         case 1:
-            findflightbynumber(flights); 
+            findFlightByNumber(flights);
             break;
         case 2:
-            findflightbydestination(flights); 
+            findFlightByDestination(flights);
             break;
         case 3:
-            findflightbydate(flights); 
+            findFlightByDate(flights);
             break;
         case 4:
             std::cout << "Выход из программы." << std::endl;
@@ -148,13 +148,13 @@ void flightmanager::findflight() const {
     } while (choice != 4);
 }
 
-void flightmanager::listallflights() const {
+void FlightManager::listAllFlights() const {
     if (flights.empty()) {
         std::cout << "Нет доступных рейсов." << std::endl;
     }
     else {
         for (const auto& flight : flights) {
-            flight.printflight();
+            flight.printFlight();
             std::cout << "-------------------" << std::endl;
         }
     }

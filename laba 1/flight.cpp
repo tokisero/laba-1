@@ -1,47 +1,49 @@
 #include "flight.h"
 #include <iostream>
 
-
-flight::flight(int flightnubmer, const std::string& destination, int day, int month, int time)
-	: flightnumber(flightnubmer), destination(destination), day(day), month(month), time(time) {
-}
-int flight::getflightnumber() const {
-	return flightnumber;
- }
-const std::string& flight::getdestination() const {
-	return destination;
-}
-int flight::getday() const {
-	return day;
-}
-int flight::getmonth() const {
-	return month;
-}
-int flight::gettime() const {
-	return time;
-}
-void flight::setdestination(const std::string& dest) {
-	destination = dest;
-}
-void flight::setmonth(const int mnth) {
-	month = mnth;
-}
-void flight::setday(const int d) {
-	day = d;
-}
-void flight::settime(const int tm) {
-	time = tm;
-}
-void flight::printflight() const {
-	std::cout << "Номер рейса: " << flightnumber << std::endl;
-	std::cout << "Пункт назначения: " << destination << std::endl;
-	std::cout << "Дата: " << day;
-	std::cout << ".";
-	std::cout << month << std::endl;
-	std::cout << "Время: " << time << std::endl;
+Flight::Flight(int flightNumber, const std::string& destination, int day, int month, int time)
+    : flightNumber(flightNumber), destination(destination), day(day), month(month), time(time) {
 }
 
+int Flight::getFlightNumber() const {
+    return flightNumber;
+}
 
+const std::string& Flight::getDestination() const {
+    return destination;
+}
 
+int Flight::getDay() const {
+    return day;
+}
 
+int Flight::getMonth() const {
+    return month;
+}
 
+int Flight::getTime() const {
+    return time;
+}
+
+void Flight::setDestination(const std::string& dest) {
+    destination = dest;
+}
+
+void Flight::setMonth(const int mnth) {
+    month = mnth;
+}
+
+void Flight::setDay(const int d) {
+    day = d;
+}
+
+void Flight::setTime(const int tm) {
+    time = tm;
+}
+
+void Flight::printFlight() const {
+    std::cout << "Номер рейса: " << flightNumber << std::endl;
+    std::cout << "Пункт назначения: " << destination << std::endl;
+    std::cout << "Дата: " << day << "." << month << std::endl;
+    std::cout << "Время: " << time << std::endl;
+}

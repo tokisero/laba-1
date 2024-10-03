@@ -2,37 +2,36 @@
 #include <iostream>
 #include <vector>
 
-class flight
+class Flight
 {
 private:
-	int flightnumber;
-	std::string destination;
-	int day;
-	int month;
-	int time;
+    int flightNumber;
+    std::string destination;
+    int day;
+    int month;
+    int time;
 public:
-	flight(int flightnumber,const std::string& destination, int day, int month, int time);
-	int getflightnumber() const;
-	const std::string& getdestination() const;
-	int getday() const;
-	int getmonth() const;
-	int gettime() const;
-	void setdestination(const std::string& dest);
-	void setday(int d);
-	void setmonth(int mnth);
-	void settime(int tm);
-	void printflight() const;
+    Flight(int flightNumber, const std::string& destination, int day, int month, int time);
+    int getFlightNumber() const;
+    const std::string& getDestination() const;
+    int getDay() const;
+    int getMonth() const;
+    int getTime() const;
+    void setDestination(const std::string& dest);
+    void setDay(int d);
+    void setMonth(int mnth);
+    void setTime(int tm);
+    void printFlight() const;
 };
 
-class flightmanager
+class FlightManager
 {
 private:
-	std::vector<flight> flights;
+    std::vector<Flight> flights;
 public:
-	void addflight(int flightnumber, const std::string& destination, int day, int month, int time);
-	void editflight(int flightnubmbr);
-	void deleteflight(int flightnumber);
-	void findflight() const;
-	void listallflights() const;
+    void addFlight(int flightNumber, const std::string& destination, int day, int month, int time);
+    void editFlight(int flightNumber);
+    void deleteFlight(int flightNumber);
+    void findFlight() const;
+    void listAllFlights() const;
 };
-
