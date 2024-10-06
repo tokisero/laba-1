@@ -86,7 +86,7 @@ void findFlightByDestination(const std::vector<Flight>& flights) {
     std::cout << "Введите точку назначения\n";
     std::cin >> destination;
 
-    bool found = false;
+    bool found = false;g
     for (const auto& flight : flights) {
         if (flight.getDestination() == destination) {
             flight.printFlight();
