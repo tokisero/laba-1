@@ -44,8 +44,8 @@ void Flight::setTime(const int tm) {
 }
 
 void Flight::printFlight() const {
-    std::cout << "Íîìåð ðåéñà: " << flightNumber << std::endl;
-    std::cout << "Ïóíêò íàçíà÷åíèÿ: " << destination << std::endl;
-    std::cout << "Äàòà: " << day << "." << month << std::endl;
-    std::cout << "Âðåìÿ: " << time << std::endl;
+    std::cout << "ÃÃ®Ã¬Ã¥Ã° Ã°Ã¥Ã©Ã±Ã : " << flightNumber << std::endl;
+    std::cout << "ÃÃ³Ã­ÃªÃ² Ã­Ã Ã§Ã­Ã Ã·Ã¥Ã­Ã¨Ã¿: " << destination << std::endl;
+    std::cout << "Ã„Ã Ã²Ã : " << day << "." << month << std::endl;
+    std::cout << "Ã‚Ã°Ã¥Ã¬Ã¿: " << time << std::endl;
 }
