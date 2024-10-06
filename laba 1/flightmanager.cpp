@@ -1,5 +1,5 @@
-#include "flight.h"
-#include "flightmanager.h"
+#include "Flight.h"
+#include "FlightManager.h"
 #include <iostream>
 #include <ranges>
 

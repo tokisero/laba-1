@@ -1,5 +1,5 @@
 #pragma once
-#include "flight.h"
+#include "Flight.h"
 #include <iostream>
 #include <ranges>
 

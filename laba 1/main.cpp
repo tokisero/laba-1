@@ -1,7 +1,7 @@
 #include <iostream>
 #include <locale>
-#include "flightmanager.h"
-#include "flight.h"
+#include "FlightMAnager.h"
+#include "Flight.h"
 
 int main() {
     setlocale(LC_ALL, "RU");
