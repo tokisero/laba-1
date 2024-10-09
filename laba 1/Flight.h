@@ -13,6 +13,7 @@ private:
     int time;
 public:
     Flight(int flightNumber, const std::string& destination, int day, int month, int time);
+    ~Flight();
     int getFlightNumber() const;
     const std::string& getDestination() const;
     int getDay() const;

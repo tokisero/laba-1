@@ -7,6 +7,10 @@ Flight::Flight(int flightNumber, const std::string& destination, int day, int mo
     : flightNumber(flightNumber), destination(destination), day(day), month(month), time(time) {
 }
 
+Flight::~Flight() {
+    destination.clear();
+}
+
 int Flight::getFlightNumber() const {
     return flightNumber;
 }
