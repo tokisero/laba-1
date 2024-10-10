@@ -1,21 +1,21 @@
 #include <iostream>
 #include <locale>
-#include "FlightMAnager.h"
+#include "FlightManager.h"
 #include "Flight.h"
 
 int main() {
-    setlocale(LC_ALL, "RU");
+    setlocale(LC_ALL, "en_US.UTF-8");
     FlightManager manager;
     int choice = 0;
     do {
-        std::cout << "Меню:\n";
-        std::cout << "1. Добавить рейс\n";
-        std::cout << "2. Изменить данные о рейсе\n";
-        std::cout << "3. Снять рейс\n";
-        std::cout << "4. Найти рейс\n";
-        std::cout << "5. Вывести все рейсы\n";
-        std::cout << "6. Выход\n";
-        std::cout << "Ваш выбор: ";
+        std::cout << "Menu:\n";
+        std::cout << "1. Add flight\n";
+        std::cout << "2. Edit flight data\n";
+        std::cout << "3. Remove flight\n";
+        std::cout << "4. Find flight\n";
+        std::cout << "5. List all flights\n";
+        std::cout << "6. Exit\n";
+        std::cout << "Your choice: ";
         std::cin >> choice;
         switch (choice) {
         case 1: {
@@ -24,29 +24,29 @@ int main() {
             int day;
             int month;
             int time;
-            std::cout << "Введите номер рейса\n";
+            std::cout << "Enter flight number\n";
             std::cin >> flightNumber;
-            std::cout << "Введите место назначения\n";
+            std::cout << "Enter destination\n";
             std::cin >> destination;
-            std::cout << "Введите месяц\n";
+            std::cout << "Enter month\n";
             std::cin >> month;
-            std::cout << "Введите день\n";
+            std::cout << "Enter day\n";
             std::cin >> day;
-            std::cout << "Введите время вылета\n";
+            std::cout << "Enter departure time\n";
             std::cin >> time;
             manager.addFlight(flightNumber, destination, day, month, time);
             break;
         }
         case 2: {
             int flightNumber;
-            std::cout << "Введите номер рейса: ";
+            std::cout << "Enter flight number: ";
             std::cin >> flightNumber;
             manager.editFlight(flightNumber);
             break;
         }
         case 3: {
             int flightNumber;
-            std::cout << "Введите номер рейса: ";
+            std::cout << "Enter flight number: ";
             std::cin >> flightNumber;
             manager.deleteFlight(flightNumber);
             break;
@@ -60,11 +60,11 @@ int main() {
             break;
         }
         case 6: {
-            std::cout << "Выход из программы." << std::endl;
+            std::cout << "Exiting program." << std::endl;
             break;
         }
         default: {
-            std::cout << "Неверный выбор, попробуйте снова." << std::endl;
+            std::cout << "Invalid choice, try again." << std::endl;
         }
         }
     } while (choice != 6);

@@ -9,38 +9,37 @@ void updateFlightDetails(Flight& flight) {
     int newMonth;
     int newTime;
     std::string zero = "0";
-
-    std::cout << "Ââåäèòå íîâûé ïóíêò íàçíà÷åíèÿ:(0 äëÿ ïðîïóñêà) ";
+    std::cout << "Enter new destination (0 to skip): ";
     std::cin >> newDestination;
     if (newDestination != zero) {
         flight.setDestination(newDestination);
     }
 
-    std::cout << "Ââåäèòå íîâûé äåíü îòïðàâêè:(0 äëÿ ïðîïóñêà) ";
+    std::cout << "Enter new day of departure (0 to skip): ";
     std::cin >> newDay;
     if (newDay != 0 && newDay <= 31) {
         flight.setDay(newDay);
     }
 
-    std::cout << "Ââåäèòå íîâûé ìåñÿö îòïðàâêè: (0 äëÿ ïðîïóñêà) ";
+    std::cout << "Enter new month of departure (0 to skip): ";
     std::cin >> newMonth;
     if (newMonth != 0 && newMonth <= 12) {
         flight.setMonth(newMonth);
     }
 
-    std::cout << "Ââåäèòå íîâîå âðåìÿ îòïðàâêè: (0 äëÿ ïðîïóñêà) ";
+    std::cout << "Enter new time of departure (0 to skip): ";
     std::cin >> newTime;
     if (newTime != 0 && newTime <= 24) {
         flight.setTime(newTime);
     }
 
-    std::cout << "Äàííûå î ðåéñå óñïåøíî èçìåíåíû!" << std::endl;
+    std::cout << "Flight details successfully updated!" << std::endl;
 }
 
 void FlightManager::addFlight(int flightNumber, const std::string& destination, int day, int month, int time) {
     Flight newFlight(flightNumber, destination, day, month, time);
     flights.push_back(std::move(newFlight));
-    std::cout << "Ðåéñ óñïåøíî äîáàâëåí!" << std::endl;
+    std::cout << "Flight successfully added!" << std::endl;
 }
 
 void FlightManager::editFlight(int flightNumber) {
@@ -50,23 +49,23 @@ void FlightManager::editFlight(int flightNumber) {
             return;
         }
     }
-    std::cout << "Ðåéñ ñ òàêèì íîìåðîì íå íàéäåí!" << std::endl;
+    std::cout << "Flight with that number not found!" << std::endl;
 }
 
 void FlightManager::deleteFlight(int flightNumber) {
     auto it = std::ranges::find_if(flights, [flightNumber](const Flight& f) {return f.getFlightNumber() == flightNumber; });
     if (it != flights.end()) {
         flights.erase(it);
-        std::cout << "Ðåéñ óäàë¸í!" << std::endl;
+        std::cout << "Flight deleted!" << std::endl;
     }
     else {
-        std::cout << "Ðåéñ ñ òàêèì íîìåðîì íå íàéäåí!" << std::endl;
+        std::cout << "Flight with that number not found!" << std::endl;
     }
 }
 
 void findFlightByNumber(const std::vector<Flight>& flights) {
     int flightNumber;
-    std::cout << "Ââåäèòå íîìåð\n";
+    std::cout << "Enter flight number: ";
     std::cin >> flightNumber;
 
     bool found = false;
@@ -77,13 +76,13 @@ void findFlightByNumber(const std::vector<Flight>& flights) {
         }
     }
     if (!found) {
-        std::cout << "Ðåéñ ñ òàêèì íîìåðîì íå íàéäåí!" << std::endl;
+        std::cout << "Flight with that number not found!" << std::endl;
     }
 }
 
 void findFlightByDestination(const std::vector<Flight>& flights) {
     std::string destination;
-    std::cout << "Ââåäèòå òî÷êó íàçíà÷åíèÿ\n";
+    std::cout << "Enter destination: ";
     std::cin >> destination;
 
     bool found = false;
@@ -94,16 +93,16 @@ void findFlightByDestination(const std::vector<Flight>& flights) {
         }
     }
     if (!found) {
-        std::cout << "Ðåéñ ñ òàêèì ïóíêòîì íàçíà÷åíèÿ íå íàéäåí!" << std::endl;
+        std::cout << "Flight with that destination not found!" << std::endl;
     }
 }
 
 void findFlightByDate(const std::vector<Flight>& flights) {
     int day;
     int month;
-    std::cout << "Ââåäèòå äåíü: ";
+    std::cout << "Enter day: ";
     std::cin >> day;
-    std::cout << "Ââåäèòå ìåñÿö: ";
+    std::cout << "Enter month: ";
     std::cin >> month;
 
     bool found = false;
@@ -114,18 +113,18 @@ void findFlightByDate(const std::vector<Flight>& flights) {
         }
     }
     if (!found) {
-        std::cout << "Ðåéñ ñ òàêîé äàòîé íå íàéäåí!" << std::endl;
+        std::cout << "Flight with that date not found!" << std::endl;
     }
 }
 
 void FlightManager::findFlight() const {
     int choice = 0;
     do {
-        std::cout << "1. Íàéòè ïî íîìåðó\n";
-        std::cout << "2. Íàéòè ïî òî÷êå íàçíà÷åíèÿ\n";
-        std::cout << "3. Íàéòè ïî äàòå\n";
-        std::cout << "4. Çàêîí÷èòü ïîèñê\n";
-        std::cout << "Âàø âûáîð: ";
+        std::cout << "1. Find by number\n";
+        std::cout << "2. Find by destination\n";
+        std::cout << "3. Find by date\n";
+        std::cout << "4. Exit search\n";
+        std::cout << "Your choice: ";
         std::cin >> choice;
 
         switch (choice) {
@@ -139,10 +138,10 @@ void FlightManager::findFlight() const {
             findFlightByDate(flights);
             break;
         case 4:
-            std::cout << "Âûõîä èç ïðîãðàììû." << std::endl;
+            std::cout << "Exiting search." << std::endl;
             break;
         default:
-            std::cout << "Íåâåðíûé âûáîð, ïîïðîáóéòå ñíîâà." << std::endl;
+            std::cout << "Invalid choice, try again." << std::endl;
             break;
         }
     } while (choice != 4);
@@ -150,7 +149,7 @@ void FlightManager::findFlight() const {
 
 void FlightManager::listAllFlights() const {
     if (flights.empty()) {
-        std::cout << "Íåò äîñòóïíûõ ðåéñîâ." << std::endl;
+        std::cout << "No available flights." << std::endl;
     }
     else {
         for (const auto& flight : flights) {
