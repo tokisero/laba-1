@@ -24,7 +24,6 @@ public:
     void setDay(int d);
     void setMonth(int mnth);
     void setTime(int tm);
-    //void printFlight() const;
     bool operator == (const Flight& flight) const;
     friend std::ostream& operator << (std::ostream& os, const Flight& flight) {
         os << "Flight number: " << flight.flightNumber << "\n"
@@ -33,5 +32,4 @@ public:
             << "Time: " << flight.time << "\n\n";
         return os;
     }
-    
 };

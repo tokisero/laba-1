@@ -16,7 +16,7 @@ void updateFlightDetails(Flight& flight) {
         flight.setDestination(newDestination);
     }
 
-    std::cout << "Enter new day of departure (0 to skip): ";
+    std::cout << "Enter new daay of departure (0 to skip): ";
     std::cin >> newDay;
     if (newDay != 0 && newDay <= 31) {
         flight.setDay(newDay);
@@ -39,7 +39,6 @@ void updateFlightDetails(Flight& flight) {
 
 void FlightManager::addFlight(int flightNumber, const std::string& destination, int day, int month, int time) {
     Flight newFlight(flightNumber, destination, day, month, time);
-    //flights.push_back(std::move(newFlight));
     *this += newFlight;
     std::cout << "Flight successfully added!" << std::endl;
 }
@@ -69,11 +68,9 @@ void findFlightByNumber(const std::vector<Flight>& flights) {
     int flightNumber;
     std::cout << "Enter flight number: ";
     std::cin >> flightNumber;
-
     bool found = false;
     for (const auto& flight : flights) {
         if (flight.getFlightNumber() == flightNumber) {
-            //flight.printFlight();
             std::cout << flight;
             found = true;
         }
@@ -87,11 +84,9 @@ void findFlightByDestination(const std::vector<Flight>& flights) {
     std::string destination;
     std::cout << "Enter destination: ";
     std::cin >> destination;
-
     bool found = false;
     for (const auto& flight : flights) {
         if (flight.getDestination() == destination) {
-            //flight.printFlight();
             std::cout << flight;
             found = true;
         }
@@ -112,7 +107,6 @@ void findFlightByDate(const std::vector<Flight>& flights) {
     bool found = false;
     for (const auto& flight : flights) {
         if (flight.getDay() == day && flight.getMonth() == month) {
-            //flight.printFlight();
             std::cout << flight;
             found = true;
         }
@@ -131,7 +125,6 @@ void FlightManager::findFlight() const {
         std::cout << "4. Exit search\n";
         std::cout << "Your choice: ";
         std::cin >> choice;
-
         switch (choice) {
         case 1:
             findFlightByNumber(flights);
@@ -158,7 +151,6 @@ void FlightManager::listAllFlights() const {
     }
     else {
         for (const auto& flight : flights) {
-            //flight.printFlight();
             std::cout << flight;
             std::cout << "-------------------" << std::endl;
         }
@@ -166,8 +158,6 @@ void FlightManager::listAllFlights() const {
 }
 
 FlightManager& FlightManager::operator += (const Flight& flight) {
-    //flights.emplace_back(std::make_unique<Flight>
-    //flights.emplace_back(std::make_unique<Flight>( flight.getFlightNumber(), flight.getDestination(), flight.getDay(), flight.getMonth(), flight.getTime()));
     int flightNumber = flight.getFlightNumber();
     std::string destination = flight.getDestination();
     int day = flight.getDay();

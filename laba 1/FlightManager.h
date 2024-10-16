@@ -6,7 +6,6 @@
 class FlightManager
 {
 private:
-    //std::vector<std::unique_ptr<Flight>> flights;
     std::vector<Flight> flights;
 public:
     void addFlight(int flightNumber, const std::string& destination, int day, int month, int time);
