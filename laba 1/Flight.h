@@ -23,6 +23,13 @@ public:
     void setDay(int d);
     void setMonth(int mnth);
     void setTime(int tm);
-    void printFlight() const;
+    //void printFlight() const;
+    bool operator == (const Flight& flight) const;
+    friend std::ostream& operator << (std::ostream& os, const Flight& flight) {
+        os << "Flight number: " << flight.flightNumber << "\n"
+            << "Destination: " << flight.destination << "\n"
+            << "Date: " << flight.day << "." << flight.month << "\n"
+            << "Time: " << flight.time << "\n\n";
+        return os;
+    }
 };
-

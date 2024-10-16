@@ -47,9 +47,7 @@ void Flight::setTime(const int tm) {
     time = tm;
 }
 
-void Flight::printFlight() const {
-    std::cout << "Flight number: " << flightNumber << std::endl;
-    std::cout << "Destination: " << destination << std::endl;
-    std::cout << "Date: " << day << "." << month << std::endl;
-    std::cout << "Time: " << time << std::endl;
+
+bool Flight:: operator == (const Flight& flight) const {
+    return this->getFlightNumber() == flight.getFlightNumber();
 }

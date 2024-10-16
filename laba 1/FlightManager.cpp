@@ -3,6 +3,7 @@
 #include <iostream>
 #include <ranges>
 
+
 void updateFlightDetails(Flight& flight) {
     std::string newDestination;
     int newDay;
@@ -38,7 +39,8 @@ void updateFlightDetails(Flight& flight) {
 
 void FlightManager::addFlight(int flightNumber, const std::string& destination, int day, int month, int time) {
     Flight newFlight(flightNumber, destination, day, month, time);
-    flights.push_back(std::move(newFlight));
+    //flights.push_back(std::move(newFlight));
+    *this += newFlight;
     std::cout << "Flight successfully added!" << std::endl;
 }
 
@@ -71,7 +73,8 @@ void findFlightByNumber(const std::vector<Flight>& flights) {
     bool found = false;
     for (const auto& flight : flights) {
         if (flight.getFlightNumber() == flightNumber) {
-            flight.printFlight();
+            //flight.printFlight();
+            std::cout << flight;
             found = true;
         }
     }
@@ -88,7 +91,8 @@ void findFlightByDestination(const std::vector<Flight>& flights) {
     bool found = false;
     for (const auto& flight : flights) {
         if (flight.getDestination() == destination) {
-            flight.printFlight();
+            //flight.printFlight();
+            std::cout << flight;
             found = true;
         }
     }
@@ -108,7 +112,8 @@ void findFlightByDate(const std::vector<Flight>& flights) {
     bool found = false;
     for (const auto& flight : flights) {
         if (flight.getDay() == day && flight.getMonth() == month) {
-            flight.printFlight();
+            //flight.printFlight();
+            std::cout << flight;
             found = true;
         }
     }
@@ -153,8 +158,21 @@ void FlightManager::listAllFlights() const {
     }
     else {
         for (const auto& flight : flights) {
-            flight.printFlight();
+            //flight.printFlight();
+            std::cout << flight;
             std::cout << "-------------------" << std::endl;
         }
     }
+}
+
+FlightManager& FlightManager::operator += (const Flight& flight) {
+    //flights.emplace_back(std::make_unique<Flight>
+    //flights.emplace_back(std::make_unique<Flight>( flight.getFlightNumber(), flight.getDestination(), flight.getDay(), flight.getMonth(), flight.getTime()));
+    int flightNumber = flight.getFlightNumber();
+    std::string destination = flight.getDestination();
+    int day = flight.getDay();
+    int month = flight.getMonth();
+    int time = flight.getTime();
+    flights.emplace_back(flightNumber, destination, day, month, time);
+    return *this;
 }
