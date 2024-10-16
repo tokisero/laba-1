@@ -15,16 +15,13 @@ public:
     FlightManager();
     ~FlightManager();
 
-   
-    FlightManager(const FlightManager& other);
+    // Копирующий конструктор и оператор присваивания
+    FlightManager(const FlightManager& other) = default;
+    FlightManager& operator=(const FlightManager& other) = default;
 
-   
-    FlightManager& operator=(const FlightManager& other) = delete;
-
-  
-    FlightManager(FlightManager&& other) noexcept;
-
-    FlightManager& operator=(FlightManager&& other) noexcept;
+    // Конструктор перемещения и оператор перемещающего присваивания
+    FlightManager(FlightManager&& other) noexcept = default;
+    FlightManager& operator=(FlightManager&& other) noexcept = default;
 
     void addFlight(int flightNumber, const std::string& destination, int day, int month, int time);
     void editFlight(int flightNumber);

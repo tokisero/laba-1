@@ -17,11 +17,9 @@ public:
     Flight(int flightNumber, const std::string& destination, int day, int month, int time);
     ~Flight();
 
-    //  опирующий конструктор
-    Flight(const Flight& other);
-
-    // ќператор копирующего присваивани€
-    Flight& operator=(const Flight& other);
+    // »спользуем = default дл€ копирующего конструктора и оператора присваивани€
+    Flight(const Flight& other) = default;
+    Flight& operator=(const Flight& other) = default;
 
     //  онструктор перемещени€
     Flight(Flight&& other) noexcept;

@@ -4,7 +4,6 @@
 #include <ranges>
 #include <fstream>
 
-
 FlightManager::FlightManager() {
     readFromFile();
 }
@@ -12,21 +11,6 @@ FlightManager::FlightManager() {
 FlightManager::~FlightManager() {
     writeToFile();
 }
-
-FlightManager::FlightManager(const FlightManager& other)
-    : flights(other.flights) {}
-
-FlightManager::FlightManager(FlightManager&& other) noexcept
-    : flights(std::move(other.flights)) {}
-
-FlightManager& FlightManager::operator=(FlightManager&& other) noexcept {
-    if (this != &other) {
-        flights = std::move(other.flights);
-    }
-    return *this;
-}
-
-// Остальные методы остаются без изменений...
 
 void FlightManager::readFromFile() {
     std::ifstream file(filename);
@@ -36,10 +20,8 @@ void FlightManager::readFromFile() {
         newFile.close();
         return;
     }
-    int flightNumber;
-    int day;
-    int month;
-    int time;
+
+    int flightNumber, day, month, time;
     std::string destination;
     while (file >> flightNumber >> destination >> day >> month >> time) {
         flights.emplace_back(flightNumber, destination, day, month, time);
@@ -64,7 +46,8 @@ void FlightManager::writeToFile() const {
     file.close();
 }
 
-// ...остальные методы остаются без изменений...
+
+
 
 void updateFlightDetails(Flight& flight) {
     std::string newDestination;
