@@ -3,13 +3,40 @@
 #include <iostream>
 #include <string_view>
 
+
 Flight::Flight(int flightNumber, const std::string& destination, int day, int month, int time)
-    : flightNumber(flightNumber), destination(destination), day(day), month(month), time(time) {
-}
+    : flightNumber(flightNumber), destination(destination), day(day), month(month), time(time) {}
 
 Flight::~Flight() {
     destination.clear();
-    
+}
+
+Flight::Flight(const Flight& other)
+    : flightNumber(other.flightNumber), destination(other.destination), day(other.day), month(other.month), time(other.time) {}
+
+Flight& Flight::operator=(const Flight& other) {
+    if (this != &other) {
+        flightNumber = other.flightNumber;
+        destination = other.destination;
+        day = other.day;
+        month = other.month;
+        time = other.time;
+    }
+    return *this;
+}
+
+Flight::Flight(Flight&& other) noexcept
+    : flightNumber(other.flightNumber), destination(std::move(other.destination)), day(other.day), month(other.month), time(other.time) {}
+
+Flight& Flight::operator=(Flight&& other) noexcept {
+    if (this != &other) {
+        flightNumber = other.flightNumber;
+        destination = std::move(other.destination);
+        day = other.day;
+        month = other.month;
+        time = other.time;
+    }
+    return *this;
 }
 
 int Flight::getFlightNumber() const {
