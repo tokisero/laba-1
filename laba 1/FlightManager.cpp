@@ -12,13 +12,11 @@ FlightManager::~FlightManager() {
     writeToFile();
 }
 
-// Копирующий конструктор
 FlightManager::FlightManager(const FlightManager& other)
     : flights(other.flights) {
     std::cout << "Copy constructor called." << std::endl;
 }
 
-// Оператор копирующего присваивания
 FlightManager& FlightManager::operator=(const FlightManager& other) {
     if (this != &other) {
         flights = other.flights;
@@ -27,13 +25,11 @@ FlightManager& FlightManager::operator=(const FlightManager& other) {
     return *this;
 }
 
-// Конструктор перемещения
 FlightManager::FlightManager(FlightManager&& other) noexcept
     : flights(std::move(other.flights)) {
     std::cout << "Move constructor called." << std::endl;
 }
 
-// Оператор перемещающего присваивания
 FlightManager& FlightManager::operator=(FlightManager&& other) noexcept {
     if (this != &other) {
         flights = std::move(other.flights);
@@ -51,7 +47,10 @@ void FlightManager::readFromFile() {
         return;
     }
 
-    int flightNumber, day, month, time;
+    int flightNumber; 
+    int day; 
+    int month; 
+    int time;
     std::string destination;
     while (file >> flightNumber >> destination >> day >> month >> time) {
         flights.emplace_back(flightNumber, destination, day, month, time);
@@ -75,9 +74,6 @@ void FlightManager::writeToFile() const {
     }
     file.close();
 }
-
-
-
 
 void updateFlightDetails(Flight& flight) {
     std::string newDestination;

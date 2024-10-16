@@ -10,13 +10,11 @@ Flight::~Flight() {
     destination.clear();
 }
 
-// Копирующий конструктор
 Flight::Flight(const Flight& other)
     : flightNumber(other.flightNumber), destination(other.destination), day(other.day), month(other.month), time(other.time) {
     std::cout << "Copy constructor called." << std::endl;
 }
 
-// Оператор копирующего присваивания
 Flight& Flight::operator=(const Flight& other) {
     if (this != &other) {
         flightNumber = other.flightNumber;
@@ -78,7 +76,6 @@ void Flight::setDay(const int d) {
 void Flight::setTime(const int tm) {
     time = tm;
 }
-
 
 bool Flight:: operator == (const Flight& flight) const {
     return this->getFlightNumber() == flight.getFlightNumber();
