@@ -12,11 +12,41 @@ FlightManager::~FlightManager() {
     writeToFile();
 }
 
+// Копирующий конструктор
+FlightManager::FlightManager(const FlightManager& other)
+    : flights(other.flights) {
+    std::cout << "Copy constructor called." << std::endl;
+}
+
+// Оператор копирующего присваивания
+FlightManager& FlightManager::operator=(const FlightManager& other) {
+    if (this != &other) {
+        flights = other.flights;
+        std::cout << "Copy assignment operator called." << std::endl;
+    }
+    return *this;
+}
+
+// Конструктор перемещения
+FlightManager::FlightManager(FlightManager&& other) noexcept
+    : flights(std::move(other.flights)) {
+    std::cout << "Move constructor called." << std::endl;
+}
+
+// Оператор перемещающего присваивания
+FlightManager& FlightManager::operator=(FlightManager&& other) noexcept {
+    if (this != &other) {
+        flights = std::move(other.flights);
+        std::cout << "Move assignment operator called." << std::endl;
+    }
+    return *this;
+}
+
 void FlightManager::readFromFile() {
     std::ifstream file(filename);
     if (!file.is_open()) {
         std::cout << "File not found. Creating a new one." << std::endl;
-        std::ofstream newFile(filename); // Создание нового файла, если его нет
+        std::ofstream newFile(filename);
         newFile.close();
         return;
     }
