@@ -3,12 +3,30 @@
 #include <iostream>
 #include <string_view>
 
-
 Flight::Flight(int flightNumber, const std::string& destination, int day, int month, int time)
     : flightNumber(flightNumber), destination(destination), day(day), month(month), time(time) {}
 
 Flight::~Flight() {
     destination.clear();
+}
+
+// Копирующий конструктор
+Flight::Flight(const Flight& other)
+    : flightNumber(other.flightNumber), destination(other.destination), day(other.day), month(other.month), time(other.time) {
+    std::cout << "Copy constructor called." << std::endl;
+}
+
+// Оператор копирующего присваивания
+Flight& Flight::operator=(const Flight& other) {
+    if (this != &other) {
+        flightNumber = other.flightNumber;
+        destination = other.destination;
+        day = other.day;
+        month = other.month;
+        time = other.time;
+        std::cout << "Copy assignment operator called." << std::endl;
+    }
+    return *this;
 }
 
 Flight::Flight(Flight&& other) noexcept

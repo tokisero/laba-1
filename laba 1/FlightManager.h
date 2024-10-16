@@ -15,9 +15,11 @@ public:
     FlightManager();
     ~FlightManager();
 
-    //  опирующий конструктор и оператор присваивани€
-    FlightManager(const FlightManager& other) = default;
-    FlightManager& operator=(const FlightManager& other) = default;
+    //  опирующий конструктор
+    FlightManager(const FlightManager& other);
+
+    // ќператор копирующего присваивани€
+    FlightManager& operator=(const FlightManager& other);
 
     //  онструктор перемещени€ и оператор перемещающего присваивани€
     FlightManager(FlightManager&& other) noexcept = default;

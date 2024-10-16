@@ -1,8 +1,6 @@
 #pragma once
 #include <iostream>
-#include <vector>
 #include <string>
-#include <memory>
 
 class Flight
 {
@@ -17,9 +15,11 @@ public:
     Flight(int flightNumber, const std::string& destination, int day, int month, int time);
     ~Flight();
 
-    // »спользуем = default дл€ копирующего конструктора и оператора присваивани€
-    Flight(const Flight& other) = default;
-    Flight& operator=(const Flight& other) = default;
+    //  опирующий конструктор
+    Flight(const Flight& other);
+
+    // ќператор копирующего присваивани€
+    Flight& operator=(const Flight& other);
 
     //  онструктор перемещени€
     Flight(Flight&& other) noexcept;
