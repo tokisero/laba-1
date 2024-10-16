@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <string_view>
+#include <memory>
 
 class Flight
 {
@@ -32,4 +33,5 @@ public:
             << "Time: " << flight.time << "\n\n";
         return os;
     }
+    
 };
