@@ -2,7 +2,51 @@
 #include "FlightManager.h"
 #include <iostream>
 #include <ranges>
+#include <fstream>
 
+FlightManager::FlightManager() {
+    readFromFile();
+}
+
+FlightManager::~FlightManager() {
+    writeToFile();
+}
+
+void FlightManager::readFromFile() {
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cout << "File not found. Creating a new one." << std::endl;
+        std::ofstream newFile(filename); // Создание нового файла, если его нет
+        newFile.close();
+        return;
+    }
+
+    int flightNumber, day, month, time;
+    std::string destination;
+    while (file >> flightNumber >> destination >> day >> month >> time) {
+        flights.emplace_back(flightNumber, destination, day, month, time);
+    }
+    file.close();
+}
+
+void FlightManager::writeToFile() const {
+    std::ofstream file(filename);
+    if (!file.is_open()) {
+        std::cout << "Could not open file for writing." << std::endl;
+        return;
+    }
+
+    for (const auto& flight : flights) {
+        file << flight.getFlightNumber() << " "
+            << flight.getDestination() << " "
+            << flight.getDay() << " "
+            << flight.getMonth() << " "
+            << flight.getTime() << "\n";
+    }
+    file.close();
+}
+
+// ...остальные методы остаются без изменений...
 
 void updateFlightDetails(Flight& flight) {
     std::string newDestination;
