@@ -7,7 +7,7 @@ class DataBase {
 private:
     std::string filename;
 public:
-    DataBase(const std::string& file);
-    std::vector<Flight> readFromFile();
+    explicit DataBase(const std::string& file);
+    const std::vector<Flight> readFromFile();
     void writeToFile(const std::vector<Flight>& flights) const;
 };

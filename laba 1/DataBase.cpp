@@ -4,7 +4,7 @@
 
 DataBase::DataBase(const std::string& file) : filename(file) {}
 
-std::vector<Flight> DataBase::readFromFile() {
+const std::vector<Flight> DataBase::readFromFile() {
     std::vector<Flight> flights;
     std::ifstream file(filename);
     if (!file.is_open()) {
@@ -13,7 +13,6 @@ std::vector<Flight> DataBase::readFromFile() {
         newFile.close();
         return flights;
     }
-
     int flightNumber;
     int day;
     int month;

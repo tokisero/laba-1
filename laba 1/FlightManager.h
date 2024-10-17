@@ -9,7 +9,7 @@ private:
     std::vector<Flight> flights;
     DataBase db;
 public:
-    FlightManager(const std::string& filename = "flights.txt");
+    explicit FlightManager(const std::string& filename = "flights.txt");
     ~FlightManager();
     void addFlight(int flightNumber, const std::string& destination, int day, int month, int time);
     void editFlight(int flightNumber);
