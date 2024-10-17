@@ -4,7 +4,7 @@
 
 DataBase::DataBase(const std::string& file) : filename(file) {}
 
-const std::vector<Flight> DataBase::readFromFile() {
+ std::vector<Flight> DataBase::readFromFile() const {
     std::vector<Flight> flights;
     std::ifstream file(filename);
     if (!file.is_open()) {
