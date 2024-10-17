@@ -14,19 +14,6 @@ private:
 public:
     Flight(int flightNumber, const std::string& destination, int day, int month, int time);
     ~Flight();
-
-    // Копирующий конструктор
-    Flight(const Flight& other);
-
-    // Оператор копирующего присваивания
-    Flight& operator=(const Flight& other);
-
-    // Конструктор перемещения
-    Flight(Flight&& other) noexcept;
-
-    // Оператор перемещающего присваивания
-    Flight& operator=(Flight&& other) noexcept;
-
     int getFlightNumber() const;
     const std::string& getDestination() const;
     int getDay() const;

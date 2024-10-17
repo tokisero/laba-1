@@ -1,29 +1,20 @@
 #pragma once
 #include "Flight.h"
-#include <iostream>
+#include "DataBase.h"
 #include <vector>
-#include <ranges>
-#include <fstream>
+#include <string>
 
-class FlightManager
-{
+class FlightManager {
 private:
     std::vector<Flight> flights;
-    const std::string filename = "flights.txt";
+    DataBase db;
 public:
-    FlightManager();
+    FlightManager(const std::string& filename = "flights.txt");
     ~FlightManager();
-    FlightManager(const FlightManager& other);
-    FlightManager& operator=(const FlightManager& other);
-    FlightManager(FlightManager&& other) noexcept;
-    FlightManager& operator=(FlightManager&& other) noexcept;
     void addFlight(int flightNumber, const std::string& destination, int day, int month, int time);
     void editFlight(int flightNumber);
     void deleteFlight(int flightNumber);
     void findFlight() const;
     void listAllFlights() const;
     FlightManager& operator+=(const Flight& flight);
-private:
-    void readFromFile();
-    void writeToFile() const;
 };

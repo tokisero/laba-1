@@ -1,78 +1,13 @@
-#include "Flight.h"
 #include "FlightManager.h"
 #include <iostream>
 #include <ranges>
-#include <fstream>
 
-FlightManager::FlightManager() {
-    readFromFile();
+FlightManager::FlightManager(const std::string& filename) : db(filename) {
+    flights = db.readFromFile();
 }
 
 FlightManager::~FlightManager() {
-    writeToFile();
-}
-
-FlightManager::FlightManager(const FlightManager& other)
-    : flights(other.flights) {
-    std::cout << "Copy constructor called." << std::endl;
-}
-
-FlightManager& FlightManager::operator=(const FlightManager& other) {
-    if (this != &other) {
-        flights = other.flights;
-        std::cout << "Copy assignment operator called." << std::endl;
-    }
-    return *this;
-}
-
-FlightManager::FlightManager(FlightManager&& other) noexcept
-    : flights(std::move(other.flights)) {
-    std::cout << "Move constructor called." << std::endl;
-}
-
-FlightManager& FlightManager::operator=(FlightManager&& other) noexcept {
-    if (this != &other) {
-        flights = std::move(other.flights);
-        std::cout << "Move assignment operator called." << std::endl;
-    }
-    return *this;
-}
-
-void FlightManager::readFromFile() {
-    std::ifstream file(filename);
-    if (!file.is_open()) {
-        std::cout << "File not found. Creating a new one." << std::endl;
-        std::ofstream newFile(filename);
-        newFile.close();
-        return;
-    }
-
-    int flightNumber; 
-    int day; 
-    int month; 
-    int time;
-    std::string destination;
-    while (file >> flightNumber >> destination >> day >> month >> time) {
-        flights.emplace_back(flightNumber, destination, day, month, time);
-    }
-    file.close();
-}
-
-void FlightManager::writeToFile() const {
-    std::ofstream file(filename);
-    if (!file.is_open()) {
-        std::cout << "Could not open file for writing." << std::endl;
-        return;
-    }
-
-    for (const auto& flight : flights) {
-        file << flight.getFlightNumber() << " "
-            << flight.getDestination() << " "
-            << flight.getDay() << " "
-            << flight.getMonth() << " "
-            << flight.getTime() << "\n";
-    }
-    file.close();
+    db.writeToFile(flights);
 }
 
 void updateFlightDetails(Flight& flight) {

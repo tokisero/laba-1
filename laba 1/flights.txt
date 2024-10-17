@@ -1,1 +1,5 @@
 1 Moscow 15 12 17
+6 London 17 10 22
+9 Sydney 18 11 2
+10 Paris 13 11 5
+12 Berlin 5 12 7
