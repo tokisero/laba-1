@@ -19,7 +19,7 @@ public:
         this->month = other.getMonth();
         this->time = other.getTime();
     }*/
-    ~Flight();
+   // ~Flight();
     int getFlightNumber() const;
     const std::string& getDestination() const;
     int getDay() const;
