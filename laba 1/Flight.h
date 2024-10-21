@@ -12,14 +12,6 @@ private:
     int time;
 public:
     Flight(int flightNumber, const std::string& destination, int day, int month, int time);
-    /*Flight(const Flight& other) {
-        this->flightNumber = other.getFlightNumber();
-        this->destination = other.getDestination();
-        this->day = other.getDay();
-        this->month = other.getMonth();
-        this->time = other.getTime();
-    }*/
-   // ~Flight();
     int getFlightNumber() const;
     const std::string& getDestination() const;
     int getDay() const;
@@ -30,7 +22,6 @@ public:
     void setMonth(int mnth);
     void setTime(int tm);
     bool operator==(const Flight& flight) const;
-
     friend std::ostream& operator<<(std::ostream& os, const Flight& flight) {
         os << "Flight number: " << flight.flightNumber << "\n"
             << "Destination: " << flight.destination << "\n"

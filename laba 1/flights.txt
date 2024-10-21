@@ -3,3 +3,4 @@
 9 Sydney 18 11 2
 10 Paris 13 11 5
 12 Berlin 5 12 7
+19 Pekin 25 1 12

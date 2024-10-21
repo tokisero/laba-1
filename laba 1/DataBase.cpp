@@ -1,6 +1,7 @@
 #include "DataBase.h"
 #include <iostream>
 #include <fstream>
+#include "DataBase.h"
 
 DataBase::DataBase(const std::string& file) : filename(file) {}
 
@@ -31,7 +32,6 @@ void DataBase::writeToFile(const std::vector<Flight>& flights) const {
         std::cout << "Не удалось открыть файл для записи." << std::endl;
         return;
     }
-
     for (const auto& flight : flights) {
         file << flight.getFlightNumber() << " "
             << flight.getDestination() << " "

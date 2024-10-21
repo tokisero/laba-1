@@ -7,7 +7,9 @@ FlightManager::FlightManager(const std::string& filename) : db(filename) {
 }
 
 FlightManager::~FlightManager() {
+    std::cout << "destruct\n";
     db.writeToFile(flights);
+    flights.clear();
 }
 
 void updateFlightDetails(Flight& flight) {
@@ -21,7 +23,6 @@ void updateFlightDetails(Flight& flight) {
     if (newDestination != zero) {
         flight.setDestination(newDestination);
     }
-
     std::cout << "Enter new daay of departure (0 to skip): ";
     std::cin >> newDay;
     if (newDay != 0 && newDay <= 31) {
@@ -172,3 +173,4 @@ FlightManager& FlightManager::operator += (const Flight& flight) {
     flights.emplace_back(flightNumber, destination, day, month, time);
     return *this;
 }
+
