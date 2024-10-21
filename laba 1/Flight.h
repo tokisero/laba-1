@@ -12,13 +12,13 @@ private:
     int time;
 public:
     Flight(int flightNumber, const std::string& destination, int day, int month, int time);
-    Flight(const Flight &other) {
+    /*Flight(const Flight& other) {
         this->flightNumber = other.getFlightNumber();
         this->destination = other.getDestination();
         this->day = other.getDay();
         this->month = other.getMonth();
         this->time = other.getTime();
-    }
+    }*/
     ~Flight();
     int getFlightNumber() const;
     const std::string& getDestination() const;

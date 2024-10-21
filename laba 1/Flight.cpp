@@ -4,7 +4,7 @@
 #include <string_view>
 
 Flight::Flight(int flightNumber, const std::string& destination, int day, int month, int time)
-    : flightNumber(flightNumber), destination(destination), day(day), month(month), time(time) {}
+  : flightNumber(flightNumber), destination(destination), day(day), month(month), time(time) {}
 
 Flight::~Flight() {
     destination.clear();
