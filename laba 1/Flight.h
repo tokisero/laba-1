@@ -26,7 +26,7 @@ public:
         os << "Flight number: " << flight.flightNumber << "\n"
             << "Destination: " << flight.destination << "\n"
             << "Date: " << flight.day << "." << flight.month << "\n"
-            << "Time: " << flight.time << "\n\n";
+            << "Time: " << flight.time << ".00\n\n";
         return os;
     }
-};
+};  

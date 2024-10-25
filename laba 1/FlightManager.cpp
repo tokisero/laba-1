@@ -7,7 +7,6 @@ FlightManager::FlightManager(const std::string& filename) : db(filename) {
 }
 
 FlightManager::~FlightManager() {
-    std::cout << "destruct\n";
     db.writeToFile(flights);
 }
 
