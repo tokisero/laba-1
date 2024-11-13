@@ -2,7 +2,7 @@
 #include <iostream>
 #include <sqlite3.h>
 
-DataBase::DataBase(const std::string& file) : filename(file), db(nullptr) {
+DataBase::DataBase(const std::string& file) : filename(file) {
     open();
     initialize();
 }

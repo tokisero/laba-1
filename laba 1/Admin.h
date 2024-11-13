@@ -5,6 +5,6 @@
 class Admin : public User, public FlightManager {
 
 public:
-    Admin(const std::string& username);
+    explicit Admin(const std::string& username);
     void menu() override;
 };
