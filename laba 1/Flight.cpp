@@ -1,10 +1,8 @@
 #include "Flight.h"
-#include "FlightManager.h"
-#include <iostream>
 #include <string_view>
 
-Flight::Flight(int flightNumber, const std::string& destination, int day, int month, int time)
-  : flightNumber(flightNumber), destination(destination), day(day), month(month), time(time) {}
+Flight::Flight(int flightNumber, const std::string& destination, int day, int month, int time, int seats)
+    : flightNumber(flightNumber), destination(destination), day(day), month(month), time(time), seats(seats) {}
 
 int Flight::getFlightNumber() const {
     return flightNumber;
@@ -26,6 +24,10 @@ int Flight::getTime() const {
     return time;
 }
 
+int Flight::getSeats() const {
+    return seats;
+}
+
 void Flight::setDestination(std::string_view dest) {
     destination = dest;
 }
@@ -42,6 +44,32 @@ void Flight::setTime(const int tm) {
     time = tm;
 }
 
-bool Flight:: operator == (const Flight& flight) const {
+void Flight::setSeats(int s) {
+    seats = s;
+}
+
+bool Flight::bookSeat() {
+    if (seats > 0) {
+        seats--;
+        return true;
+    }
+    return false;
+}
+
+bool Flight::unbookSeat() {
+    seats++;
+    return true;
+}
+
+bool Flight::operator==(const Flight& flight) const {
     return this->getFlightNumber() == flight.getFlightNumber();
+}
+
+std::ostream& operator<<(std::ostream& os, const Flight& flight) {
+    os << "Flight number: " << flight.flightNumber << "\n"
+        << "Destination: " << flight.destination << "\n"
+        << "Date: " << flight.day << "." << flight.month << "\n"
+        << "Time: " << flight.time << ".00\n"
+        << "Seats available: " << flight.seats << "\n\n";
+    return os;
 }

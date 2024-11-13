@@ -12,16 +12,15 @@ FlightManager::~FlightManager() {
 
 void updateFlightDetails(Flight& flight) {
     std::string newDestination;
-    int newDay;
-    int newMonth;
-    int newTime;
-    std::string zero = "0";
+    int newDay, newMonth, newTime;
+
     std::cout << "Enter new destination (0 to skip): ";
     std::cin >> newDestination;
-    if (newDestination != zero) {
+    if (newDestination != "0") {
         flight.setDestination(newDestination);
     }
-    std::cout << "Enter new daay of departure (0 to skip): ";
+
+    std::cout << "Enter new day of departure (0 to skip): ";
     std::cin >> newDay;
     if (newDay != 0 && newDay <= 31) {
         flight.setDay(newDay);
@@ -42,9 +41,10 @@ void updateFlightDetails(Flight& flight) {
     std::cout << "Flight details successfully updated!" << std::endl;
 }
 
-void FlightManager::addFlight(int flightNumber, const std::string& destination, int day, int month, int time) {
-    Flight newFlight(flightNumber, destination, day, month, time);
-    *this += newFlight;
+void FlightManager::addFlight(int flightNumber, const std::string& destination, int day, int month, int time, int seats) {
+    Flight newFlight(flightNumber, destination, day, month, time, seats);
+    db.addFlight(newFlight);
+    flights.push_back(newFlight);
     std::cout << "Flight successfully added!" << std::endl;
 }
 
@@ -52,6 +52,7 @@ void FlightManager::editFlight(int flightNumber) {
     for (auto& flight : flights) {
         if (flight.getFlightNumber() == flightNumber) {
             updateFlightDetails(flight);
+            db.editFlight(flight);
             return;
         }
     }
@@ -59,8 +60,9 @@ void FlightManager::editFlight(int flightNumber) {
 }
 
 void FlightManager::deleteFlight(int flightNumber) {
-    auto it = std::ranges::find_if(flights, [flightNumber](const Flight& f) {return f.getFlightNumber() == flightNumber; });
+    auto it = std::ranges::find_if(flights, [flightNumber](const Flight& f) { return f.getFlightNumber() == flightNumber; });
     if (it != flights.end()) {
+        db.deleteFlight(flightNumber);
         flights.erase(it);
         std::cout << "Flight deleted!" << std::endl;
     }
@@ -73,11 +75,13 @@ void findFlightByNumber(const std::vector<Flight>& flights) {
     int flightNumber;
     std::cout << "Enter flight number: ";
     std::cin >> flightNumber;
+
     bool found = false;
     for (const auto& flight : flights) {
         if (flight.getFlightNumber() == flightNumber) {
             std::cout << flight;
             found = true;
+            break;
         }
     }
     if (!found) {
@@ -89,6 +93,7 @@ void findFlightByDestination(const std::vector<Flight>& flights) {
     std::string destination;
     std::cout << "Enter destination: ";
     std::cin >> destination;
+
     bool found = false;
     for (const auto& flight : flights) {
         if (flight.getDestination() == destination) {
@@ -102,8 +107,7 @@ void findFlightByDestination(const std::vector<Flight>& flights) {
 }
 
 void findFlightByDate(const std::vector<Flight>& flights) {
-    int day;
-    int month;
+    int day, month;
     std::cout << "Enter day: ";
     std::cin >> day;
     std::cout << "Enter month: ";
@@ -162,13 +166,40 @@ void FlightManager::listAllFlights() const {
     }
 }
 
-FlightManager& FlightManager::operator += (const Flight& flight) {
-    int flightNumber = flight.getFlightNumber();
-    std::string destination = flight.getDestination();
-    int day = flight.getDay();
-    int month = flight.getMonth();
-    int time = flight.getTime();
-    flights.emplace_back(flightNumber, destination, day, month, time);
-    return *this;
+bool FlightManager::bookFlight(int flightNumber) {
+    for (auto& flight : flights) {
+        if (flight.getFlightNumber() == flightNumber) {
+            if (flight.getSeats() > 0) {
+                flight.bookSeat();
+                db.editFlight(flight);
+                std::cout << "Flight booked successfully!" << std::endl;
+                return true;
+            }
+            else {
+                std::cout << "No available seats on this flight." << std::endl;
+                return false;
+            }
+        }
+    }
+    std::cout << "Flight with that number not found!" << std::endl;
+    return false;
 }
 
+bool FlightManager::unbookFlight(int flightNumber) {
+    for (auto& flight : flights) {
+        if (flight.getFlightNumber() == flightNumber) {
+            flight.unbookSeat();
+            db.editFlight(flight);
+            std::cout << "Flight unbooked successfully!" << std::endl;
+            return true;
+        }
+    }
+    std::cout << "Flight with that number not found!" << std::endl;
+    return false;
+}
+
+
+FlightManager& FlightManager::operator += (const Flight& flight) {
+    flights.emplace_back(flight.getFlightNumber(), flight.getDestination(), flight.getDay(), flight.getMonth(), flight.getTime(), flight.getSeats());
+    return *this;
+}
