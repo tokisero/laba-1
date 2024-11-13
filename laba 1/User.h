@@ -3,10 +3,10 @@
 
 class User {
 protected:
-    std::string username;
+    
 public:
-    User(const std::string& username);
+    explicit User(const std::string& username);
     virtual ~User() = default;
-
+    std::string username;
     virtual void menu() = 0;
 };

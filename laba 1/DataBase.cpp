@@ -39,29 +39,7 @@ void DataBase::open() {
         char* errMsg = nullptr;
 
         const char* sql_check = "PRAGMA table_info(Flights);";
-        sqlite3_stmt* stmt;
-        bool seatsColumnExists = false;
-
-        if (sqlite3_prepare_v2(db, sql_check, -1, &stmt, nullptr) == SQLITE_OK) {
-            while (sqlite3_step(stmt) == SQLITE_ROW) {
-                const char* column_name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-                if (std::string(column_name) == "seats") {
-                    seatsColumnExists = true;
-                    break;
-                }
-            }
-            sqlite3_finalize(stmt);
-        }
-        if (!seatsColumnExists) {
-            const char* sql_add_column = "ALTER TABLE Flights ADD COLUMN seats INTEGER;";
-            if (sqlite3_exec(db, sql_add_column, nullptr, nullptr, &errMsg) != SQLITE_OK) {
-                std::cerr << "SQL error during ALTER: " << errMsg << std::endl;
-                sqlite3_free(errMsg);
-            }
-            else {
-                std::cout << "Column 'seats' successfully added!" << std::endl;
-            }
-        }
+        
     }
 }
 

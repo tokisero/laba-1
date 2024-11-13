@@ -4,6 +4,6 @@
 
 class Person : public User, public FlightManager {
 public:
-    Person(const std::string& username);
+    explicit Person(const std::string& username);
     void menu() override;
 };

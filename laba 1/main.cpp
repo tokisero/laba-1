@@ -4,7 +4,7 @@
 #include "Admin.h"
 #include "Person.h"
 
-void login(FlightManager& manager) {
+void login() {
     std::string username;
     std::string password;
 
@@ -12,16 +12,17 @@ void login(FlightManager& manager) {
     std::cin >> username;
     std::cout << "Enter password: ";
     std::cin >> password;
-    while (true) {
+    int a = 0;
+    while (a == 0) {
         if (password == "admin") {
             Admin admin(username);
             admin.menu();
-            break;
+            a = 1;
         }
         else if (password == "user") {
             Person person(username);
             person.menu();
-            break;
+            a = 1;
         }
         else {
             std::cout << "Invalid password. Please try again.\n";
@@ -32,6 +33,6 @@ void login(FlightManager& manager) {
 
 int main() {
     FlightManager manager("flights.db");
-    login(manager);
+    login();
     return 0;
 }

@@ -12,7 +12,9 @@ FlightManager::~FlightManager() {
 
 void updateFlightDetails(Flight& flight) {
     std::string newDestination;
-    int newDay, newMonth, newTime;
+    int newDay; 
+    int newMonth; 
+    int newTime;
 
     std::cout << "Enter new destination (0 to skip): ";
     std::cin >> newDestination;
@@ -107,7 +109,8 @@ void findFlightByDestination(const std::vector<Flight>& flights) {
 }
 
 void findFlightByDate(const std::vector<Flight>& flights) {
-    int day, month;
+    int day;
+    int month;
     std::cout << "Enter day: ";
     std::cin >> day;
     std::cout << "Enter month: ";

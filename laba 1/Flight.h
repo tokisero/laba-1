@@ -10,6 +10,7 @@ private:
     int month;
     int time;
     int seats;
+    friend std::ostream& operator<<(std::ostream& os, const Flight& flight);
 public:
     Flight(int flightNumber, const std::string& destination, int day, int month, int time, int seats);
     int getFlightNumber() const;
@@ -26,5 +27,5 @@ public:
     bool bookSeat();
     bool unbookSeat();
     bool operator==(const Flight& flight) const;
-    friend std::ostream& operator<<(std::ostream& os, const Flight& flight);
+    
 };
