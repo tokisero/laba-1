@@ -35,12 +35,6 @@ void DataBase::open() {
         std::cerr << "Cannot open database: " << sqlite3_errmsg(db) << std::endl;
         sqlite3_close(db);
     }
-    else {
-        char* errMsg = nullptr;
-
-        const char* sql_check = "PRAGMA table_info(Flights);";
-        
-    }
 }
 
 
@@ -53,9 +47,7 @@ void DataBase::close() {
 std::vector<Flight> DataBase::readFromFile() const {
     std::vector<Flight> flights;
     const char* sql = "SELECT flightNumber, destination, day, month, time, seats FROM Flights;";
-    sqlite3_stmt* stmt;
-
-    if (sqlite3_prepare_v2(db, sql, -1, &stmt, nullptr) == SQLITE_OK) {
+    if (sqlite3_stmt* stmt; sqlite3_prepare_v2(db, sql, -1, &stmt, nullptr) == SQLITE_OK) {
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             int flightNumber = sqlite3_column_int(stmt, 0);
             std::string destination = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));

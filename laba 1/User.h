@@ -2,8 +2,6 @@
 #include <string>
 
 class User {
-protected:
-    
 public:
     explicit User(const std::string& username);
     virtual ~User() = default;
